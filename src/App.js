@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import Login from "./Login";
+import Home from "./Home";
+import Absensi from "./Absensi";
+import { Text } from "@chakra-ui/react";
+import { AuthProvider } from "./AuthContext";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/absensi" element={<Absensi />} />
+        <Route
+          path="*"
+          element={
+            <Text fontSize="5xl" textAlign="center">
+              404 Page not found!
+            </Text>
+          }
+        />
+      </Routes>
+    </AuthProvider>
   );
 }
 
